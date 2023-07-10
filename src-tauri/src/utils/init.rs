@@ -34,7 +34,7 @@ fn init_log() -> Result<()> {
     #[cfg(feature = "verge-dev")]
     let level = LevelFilter::Debug;
     #[cfg(not(feature = "verge-dev"))]
-    let level = LevelFilter::Info;
+    let level = LevelFilter::Debug;
 
     let config = Config::builder()
         .appender(Appender::builder().build("stdout", Box::new(stdout)))
@@ -45,7 +45,7 @@ fn init_log() -> Result<()> {
                 .additive(false)
                 .build("app", level),
         )
-        .build(Root::builder().appender("stdout").build(LevelFilter::Info))?;
+        .build(Root::builder().appender("stdout").build(LevelFilter::Debug))?;
 
     log4rs::init_config(config)?;
 
